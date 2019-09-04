@@ -9,6 +9,6 @@ app.get('/',(req,res)=>{
     res.send({bb:'Can I kiss you>?'});
 });
 
-
+//deploy 1.port binding,Specify Node Environment, specify start script,create .gitigmore file
 const PORT = process.env.PORT||5000;
 app.listen(PORT);
