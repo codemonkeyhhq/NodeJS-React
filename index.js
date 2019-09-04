@@ -6,7 +6,7 @@ const app=express();
 // '/'
 //
 app.get('/',(req,res)=>{
-    res.send({bb:'Can I kiss you>?'});
+    res.send({jiaming:'wo shi sha bi'});
 });
 
 //deploy 1.port binding,Specify Node Environment, specify start script,create .gitigmore file
