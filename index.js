@@ -6,7 +6,7 @@ const passport=require('passport');
 require('./models/User');
 require('./services/passport');
 const app=express();
-require('./routes/authRoutes')(app);
+
 //mongodb+srv://huahaoqi:<password>@emaily-vuuj2.mongodb.net/test?retryWrites=true&w=majority
 mongoose.connect(keys.mongoURI);
 app.use(
@@ -18,6 +18,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+require('./routes/authRoutes')(app);
 //app reguster this route handle with
 //get watch for incoming req with this method
 //(get, post,put,delete,patch)
