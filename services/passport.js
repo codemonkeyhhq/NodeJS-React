@@ -25,7 +25,9 @@ passport.use(
         proxy:true
         },
         (accessToken, refreshToken, profile, done)=>{
+            console.log('111111111111111111111111');
             User.findOne({googleId:profile.id}).then((existingUser)=>{
+        console.log('222222222222222222222222222');
                     if(existingUser){
                         done(null,existingUser);
                     }else{
@@ -35,7 +37,7 @@ passport.use(
                     }
                 }
             )
-
+                console.log('333333333333333333333333');
         }
     )
 );
