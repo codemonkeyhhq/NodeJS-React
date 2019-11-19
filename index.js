@@ -9,6 +9,7 @@ const app=express();
 
 //mongodb+srv://huahaoqi:<password>@emaily-vuuj2.mongodb.net/test?retryWrites=true&w=majority
 mongoose.connect(keys.mongoURI);
+
 app.use(
     cookieSession({
         maxAge:30*24*60*60*1000,

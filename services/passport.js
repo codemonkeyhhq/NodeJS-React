@@ -18,26 +18,22 @@ passport.deserializeUser((id,done) => {
 
 //generic register
 passport.use(
-    new GoogleStrategy({
-        clientID:keys.googleClientID,
-        clientSecret:keys.googleClientSecret,
-        callbackURL:'/auth/google/callback',
-        proxy:true
-        },
-        (accessToken, refreshToken, profile, done)=>{
-            console.log('111111111111111111111111');
-            User.findOne({googleId:profile.id}).then((existingUser)=>{
-        console.log('222222222222222222222222222');
-                    if(existingUser){
-                        done(null,existingUser);
-                    }else{
-                        new User({googleId: profile.id})
-                            .save()
-                            .then(user=>done(null,user));
-                    }
-                }
-            )
-                console.log('333333333333333333333333');
-        }
-    )
+  new GoogleStrategy(
+    {
+      clientID: keys.googleClientID,
+      clientSecret: keys.googleClientSecret,
+      callbackURL: '/auth/google/callback',
+      proxy: true
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleId: profile.id });
+
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+
+      const user = await new User({ googleId: profile.id }).save();
+      done(null, user);
+    }
+  )
 );
